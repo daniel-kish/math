@@ -51,7 +51,7 @@ struct matrix_desc {
 /*--- matrix_list initilization ---*/
 
 // matrix_list type generator. Given a type T and size_t N it
-// generates N-times nested initializer_list<T> type of which
+// generates N-times nested initializer_list<T>, type of which
 // can be found through mx_list_gen<T,N>::type
  
 template <class T, size_t N>
