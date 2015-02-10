@@ -1,3 +1,6 @@
+#ifndef MATRIX_DESC_H
+#define MATRIX_DESC_H
+
 #include <array>
 #include <algorithm>
 #include <cassert>
@@ -66,3 +69,5 @@ void matrix_desc<N>::compute_strides()
 	for (int i = strides.size()-1; i >= 0; --i)
 		strides[i-1] = extents[i] * strides[i];
 }
+
+#endif // MATRIX_DESC_H
