@@ -4,6 +4,7 @@
 #include <array>
 #include <algorithm>
 #include <cassert>
+#include <iostream>
 
 template <std::size_t N>
 struct matrix_desc 
