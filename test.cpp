@@ -34,11 +34,3 @@ catch(std::bad_alloc& e)
 	return 1;
 }
 
-
-
-
-
-
-
-
-
