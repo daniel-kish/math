@@ -4,6 +4,10 @@
 #include <cmath>
 using namespace std;
 
+// FIXME : maybe useful to do it dynamic
+// TODO : create another branch try it out and do benchmarks
+// with very big polynomials (possibly finding *all* roots
+// make decisions and commit
 template <class T, int deg>
 struct Poly {
     array<T, deg+1> coefs;
