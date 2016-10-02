@@ -44,18 +44,22 @@ double solve(double a, double b)
 	return b/a;
 }
 
-template <class Res>
-double find_root(Res r, double x0, 
+template <class Res, class ArgT>
+ArgT find_root(Res r, ArgT x0, 
 					double eps = 1.0E-12, unsigned limit = 50)
 {
 	auto jacob = derivate(r);
+	typename std::result_of<Res(ArgT)>::type v{};
 	unsigned counter{0u};
-	while ( abs(r(x0)) > eps && counter <= limit )
+	
+	while ( abs(v=r(x0)) > eps && counter <= limit )
 	{
-		x0 += solve(jacob(x0), -r(x0));
+		std::cout << x0<<' '  << v << '\n';
+		x0 += solve(jacob(x0), -v);
 		counter++;
 	}
-    return x0;
+	cout << "elapsed: " << counter << '\n';
+	return x0;
 }
 
 int main()
@@ -63,11 +67,11 @@ int main()
     using namespace std;
     
 	Poly<double, 2> p;
-	p.coefs[0] = 0.0;
+	p.coefs[0] = -2.0;
 	p.coefs[1] = 0.0;
 	p.coefs[2] = 1.0;
-	double root = find_root(p, 1.0);
-	cout << root << ' ' << p(root) << '\n';
+	double root = find_root(p, 261.0);
+	cout << "results: " << root << ' ' << std::abs(root - sqrt(2.0)) << '\n';
 }
 
 
