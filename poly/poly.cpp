@@ -46,7 +46,7 @@ double solve(double a, double b)
 
 template <class Res, class ArgT>
 ArgT find_root(Res r, ArgT x0, 
-					double eps = 1.0E-12, unsigned limit = 50)
+	       double eps = 1.0E-12, unsigned limit = 50)
 {
 	auto jacob = derivate(r);
 	typename std::result_of<Res(ArgT)>::type v{};
