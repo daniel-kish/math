@@ -2,6 +2,7 @@
 #include <iomanip>
 #include <array>
 #include <cmath>
+#include <vector>
 using namespace std;
 
 // FIXME : maybe useful to do it dynamic
@@ -62,9 +63,31 @@ ArgT find_root(Res r, ArgT x0,
 	return x0;
 }
 
+
+template <class Res>
+auto find_all_roots(Res r, double a, double b, int mesh_sz=10)
+{
+    vector<double> rv(mesh_sz+1);
+    double step = (b-a)/mesh_sz;
+    int i{0};
+    for (double x{a}; x <= b;  x += step, ++i)
+    {
+        rv[i] = r(x);
+    }
+    const int sz = rv.size()-1;
+    vector<double> roots; 
+    for (int i{0}; i < sz; ++i)
+    {
+        auto s1 = (rv[i] > 0)? 1:-1;
+        auto s2 = (rv[i+1] > 0)? 1:-1;
+        if (s1 != s2)
+            roots.push_back( find_root(r,a+i*step) );
+    }
+    return roots;
+}
 int main()
 {
-    using namespace std;
+  using namespace std;
     
 	Poly<double, 2> p;
 	p.coefs[0] = -2.0;
